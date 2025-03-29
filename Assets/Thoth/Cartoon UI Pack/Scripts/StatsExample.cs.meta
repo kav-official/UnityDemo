@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: eca73b8fdc443fb48ab07c09b086bd75
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123705
+  packageName: Minimalist Cartoon UI Pack
+  packageVersion: 1.2
+  assetPath: Assets/Thoth/Cartoon UI Pack/Scripts/StatsExample.cs
+  uploadId: 455713

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f227069f306c4e04bb1b562353d74b91
+timeCreated: 1504781383
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99749
+  packageName: Jelly Icons
+  packageVersion: 1.0
+  assetPath: Assets/JellyIcons/Demo/BasicTemplate.unity
+  uploadId: 199944
