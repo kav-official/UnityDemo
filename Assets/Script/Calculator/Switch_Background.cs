@@ -5,7 +5,7 @@ public class ButtonSwitcchc : MonoBehaviour
 {
     public Image image,backGroundImage,backGroundDisplay;
     public Color colorOn = Color.white;
-    public Color colorOff = new Color(0f,0f,1f,52f);
+    public Color32 colorOff = new Color32(50,50,50,255);
     public Sprite spriteOff;
     public Sprite spriteOn;
     private bool isToggle = false;
@@ -19,6 +19,6 @@ public class ButtonSwitcchc : MonoBehaviour
     {
         image.sprite = isToggle ? spriteOn : spriteOff;
         backGroundImage.color = isToggle ? colorOn : colorOff;
-        backGroundDisplay.color = isToggle ? new Color(0.1f, 0.5f, 0.8f) : new Color(42f, 7f, 0f, 25f);
+        backGroundDisplay.color = isToggle ? new Color32(28,128,204,255) : new Color32(38,38,38,255);
     }
 }
