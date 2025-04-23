@@ -15,15 +15,8 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Thai (th)
   m_GUID: 2fc1bd532c27fb24ba70cf3178560b5a
   m_SerializeEntries:
-  - m_GUID: 1bbaeef7bbf9d3c4da5abc0e315a919d
-    m_Address: FirstLanguage_th
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-th
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5373cce752a871842b329a72c3dd2790
-    m_Address: TableLanguages_th
+  - m_GUID: fd31f55f54dbaad4bb54ae470d3a764c
+    m_Address: Tables1_th
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-th

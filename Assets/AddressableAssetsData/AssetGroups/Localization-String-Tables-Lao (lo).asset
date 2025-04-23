@@ -14,19 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-Lao (lo)
   m_GUID: 920f19f8cb33ec841b82eb5381414725
-  m_SerializeEntries:
-  - m_GUID: 5d00c57ba8d2f2745bf9a99328e029d1
-    m_Address: Tables1_lo
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-lo
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b6aed5561170eb045822f2a9545a3fef
-    m_Address: TableLanguages_lo
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-lo
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 7f06cb3e0800a3243a55503f39d49d36, type: 2}
   m_SchemaSet:

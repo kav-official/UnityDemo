@@ -27,19 +27,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 477965e3f9d31ab40a16fc5e83369793
-    m_Address: TableLanguages_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 96bc252c1e16fe54c99503382d798f8d
-    m_Address: FirstLanguage_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c045014c75799144b1716f552861afe
     m_Address: Gender Sample_en
     m_ReadOnly: 1

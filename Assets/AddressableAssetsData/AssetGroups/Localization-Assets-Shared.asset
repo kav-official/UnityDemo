@@ -15,11 +15,6 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: e307afebce629384485ae40b8997b182
   m_SerializeEntries:
-  - m_GUID: 06c26981f3970714c9807e95034868af
-    m_Address: Assets/Localization/Tables/FirstLanguage Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1317265bd367bf24c8c9252ba14c8797
     m_Address: Assets/Samples/Localization/1.5.4/Smart Strings - Persistent Variables/String
       Table/Gender Sample Shared Data.asset
@@ -34,11 +29,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 35772af799ea1344394f94c974041770
     m_Address: Assets/Localization/Tables/Tables1 Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 95daac3cf8fe2a64c86b8f9280592b32
-    m_Address: Assets/Localization/Tables/TableLanguages Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

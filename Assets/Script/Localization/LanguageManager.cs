@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using System.Collections;
+using UnityEngine.UI;
 using TMPro;
 
 public class LanguageManager : MonoBehaviour
 {
     private bool active = false;
-
+    public Image mainFlag;
+    public Sprite English, Chiness, Spanish,Thai;
     public TextMeshProUGUI titleText;
     private LocalizedString localizedTitle;
     // private LocalizedString localizedDescription;
@@ -23,6 +25,23 @@ public class LanguageManager : MonoBehaviour
     {
         if (active) return;
         StartCoroutine(SetLocale(value));
+
+        if (value == 0)
+        {
+            mainFlag.sprite = Chiness;
+        }
+        else if (value == 1)
+        {
+            mainFlag.sprite = English;
+        }
+        else if (value == 3)
+        {
+            mainFlag.sprite = Spanish;
+        }
+        else if (value == 4)
+        {
+            mainFlag.sprite = Thai;
+        }
     }
     IEnumerator SetLocale(int _localID)
     {

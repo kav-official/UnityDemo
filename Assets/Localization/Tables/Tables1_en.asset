@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 17608843264
-    m_Localized: I'm very happy!
+    m_Localized: Start Game Exit Win Lose
     m_Metadata:
       m_Items: []
   references:
