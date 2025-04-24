@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Calculator/Main.unity
     guid: d81936ffebc1c404fa526a221ae66a0f
+  - enabled: 1
+    path: Assets/Scenes/RockPaperScissors/Login.unity
+    guid: 8a7f3f5eeac3d75439ddc99afc9b597c
+  - enabled: 1
+    path: Assets/Scenes/RockPaperScissors/MainRockPaperScissors.unity
+    guid: 76bc8d488b0aa9546be969a3d11c4842
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 35124f700f0077f4ea2f47a2e998a8af, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
