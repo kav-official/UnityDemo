@@ -18,7 +18,7 @@ public class RPSManager : MonoBehaviour
     {
         string playerName = PlayerPrefs.GetString("player", "NONE");
         textPlayer.text = playerName;
-        // _buttonStartObject.SetActive(false);
+        _buttonStartObject.SetActive(false);
     }
     public void onClickSetHand(int value)
     {
@@ -125,20 +125,18 @@ public class RPSManager : MonoBehaviour
     {
         _DrawObject.SetActive(true);
         _RPSobject.SetActive(false);
+         _buttonStartObject.SetActive(false);
         yield return new WaitForSeconds(3);
         _DrawObject.SetActive(false);
         textScoreDraw.text = countDraw.ToString();
-        // _buttonStartObject.SetActive(false);
-
         createPrefabList(playerSpritePrefab, computerSpritePrefab, "Draw");
-
-        // newItem.transform.localScale = Vector3.one;
     }
     IEnumerator playerWin()
     {
         messageCanvasGroup.alpha = 1;
         messageCanvasGroup.gameObject.SetActive(true);
 
+        _buttonStartObject.SetActive(false);
         _RPSobject.SetActive(false);
 
         LeanTween.value(canvasGroup.gameObject, 0f, 1f, 1f)
@@ -151,19 +149,17 @@ public class RPSManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         _WinObject.SetActive(false);
         textScoreWin.text = countWin.ToString();
-        // _buttonStartObject.SetActive(false);
-
         createPrefabList(playerSpritePrefab, computerSpritePrefab, "Win");
-         
     }
     IEnumerator playerLose()
     {
         _LoseObject.SetActive(true);
         _RPSobject.SetActive(false);
+        _buttonStartObject.SetActive(false);
+
         yield return new WaitForSeconds(3);
         _LoseObject.SetActive(false);
         textScoreLose.text = countLose.ToString();
-        // _buttonStartObject.SetActive(false);
-         createPrefabList(playerSpritePrefab, computerSpritePrefab, "Lose");
+        createPrefabList(playerSpritePrefab, computerSpritePrefab, "Lose");
     }
 }
