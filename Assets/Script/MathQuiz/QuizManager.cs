@@ -2,47 +2,73 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;   
+using System.Collections.Generic;
 
 public class QuizManager : MonoBehaviour
 {
     public TextMeshProUGUI textTimeCountDown;
     public TMP_InputField playerAnswer;
-    public int startTime = 10;
-    public TextMeshProUGUI textQuizs,textQuizCounter,textplayerScore;
+    public CanvasGroup canvasAlert;
+    public TextMeshProUGUI textQuizs, textQuizCounter, textplayerScore, textAlert;
     public Button nextButton;
+    private Coroutine countDownCoroutine;
+    private float timeRemaining;
     public int currentIndex = 0;
     public int quizCounter = 0;
     public int playerAnswerInput;
-    public int playerScore=0;
+    public int playerScore = 0;
+
     [SerializeField]
     private List<string> quizs = new List<string> {"1 + 1", "2 + 3", "5 - 2", "3 + 6", "7 - 4",
     "10 - 1", "2 * 3", "6 / 2", "8 + 2", "9 - 3"};
+    public void onFocuse()
+    {
+        playerAnswer.Select();
+        playerAnswer.ActivateInputField();
+    }
     void Start()
     {
+        onFocuse();
+
+        canvasAlert.alpha = 0;
+
         playerAnswer.contentType = TMP_InputField.ContentType.IntegerNumber;
         playerAnswer.ForceLabelUpdate();
 
         nextButton.onClick.AddListener(onClickNextQuiz);
         showQuiz();
 
-        StartCoroutine(StartCountDown());
+        countDownCoroutine = StartCoroutine(StartCountDown());
     }
-
-    IEnumerator StartCountDown()
+    void Update()
     {
-        int timeLeft = startTime;
-
-        while (timeLeft >= 0)
+        if (currentIndex == 9 || timeRemaining <= 0)
+        {return;}
+        else
         {
-            textTimeCountDown.text = timeLeft.ToString();
-            yield return new WaitForSeconds(1);
-            timeLeft--;
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                onClickNextQuiz();
+                onFocuse();
+                playerAnswer.text = "";
+            }
         }
-        nextButton.interactable = false;
         
     }
+    IEnumerator StartCountDown()
+    {
+        timeRemaining = 15f;
+        while (timeRemaining > 0)
+        {
+            textTimeCountDown.text = Mathf.Ceil(timeRemaining).ToString();
+            timeRemaining -= Time.deltaTime;
+            yield return null;
+        }
 
+        nextButton.interactable = false;
+        StartCoroutine(showAlertMessage());
+        textAlert.text = "Time's Over";
+    }
     void showQuiz()
     {
         if (currentIndex < quizs.Count)
@@ -60,6 +86,12 @@ public class QuizManager : MonoBehaviour
     {
         if (currentIndex < quizs.Count - 1)
         {
+            if (countDownCoroutine != null)
+            {
+                StopCoroutine(countDownCoroutine);
+            }
+            countDownCoroutine = StartCoroutine(StartCountDown());
+            
             if (int.TryParse(playerAnswer.text, out playerAnswerInput))
             {
                 playerAnswerInput = playerAnswerInput;
@@ -114,8 +146,17 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
+            StartCoroutine(showAlertMessage());
+            textAlert.text = "Game Over";
             textQuizs.text = "Game Over";
+            playerAnswer.text = "";
             nextButton.interactable = false;
         }
+    }
+    IEnumerator showAlertMessage()
+    {
+        canvasAlert.alpha = 1;
+        yield return new WaitForSeconds(1);
+        canvasAlert.alpha = 0;
     }
 }
