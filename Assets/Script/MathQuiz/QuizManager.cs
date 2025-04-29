@@ -6,19 +6,21 @@ using System.Collections.Generic;
 
 public class QuizManager : MonoBehaviour
 {
-    public TextMeshProUGUI textTimeCountDown,resultCorrect,resultMiss;
+    public TextMeshProUGUI textTimeCountDown, resultCorrect, resultMiss;
     public TMP_InputField playerAnswer;
     public Transform _itemContent;
     public GameObject _itemPrefab;
-    public CanvasGroup canvasAlert,canvasResult;
+    public CanvasGroup canvasAlert, canvasResult,canvasLoadResult;
     public TextMeshProUGUI textQuizs, textQuizCounter, textplayerScore, textAlert;
-    public Button nextButton;
+    public Button nextButton, buttonExitResult;
     private Coroutine countDownCoroutine;
     private float timeRemaining;
     public int currentIndex = 0;
     public int quizCounter = 0;
     public int playerAnswerInput;
     public int playerScore = 0;
+    int correctScore = 0;
+    int missScore = 0;
 
     [SerializeField]
     private List<string> quizs = new List<string> {"1 + 1", "2 + 3", "5 - 2", "3 + 6", "7 - 4",
@@ -37,6 +39,8 @@ public class QuizManager : MonoBehaviour
         playerAnswer.contentType = TMP_InputField.ContentType.IntegerNumber;
         playerAnswer.ForceLabelUpdate();
 
+        buttonExitResult.onClick.AddListener(() => canvasResult.alpha = 0);
+
         nextButton.onClick.AddListener(onClickNextQuiz);
         showQuiz();
 
@@ -45,7 +49,7 @@ public class QuizManager : MonoBehaviour
     void Update()
     {
         if (currentIndex == 10 || timeRemaining <= 0)
-        {return;}
+        { return; }
         else
         {
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
@@ -67,7 +71,7 @@ public class QuizManager : MonoBehaviour
         }
         nextButton.interactable = false;
         StartCoroutine(showAlertMessage());
-        canvasResult.alpha = 1;
+        StartCoroutine(showResullt());
         textAlert.text = "Time's Over";
     }
     void showQuiz()
@@ -82,11 +86,9 @@ public class QuizManager : MonoBehaviour
             nextButton.interactable = false;
         }
     }
-
     void onClickNextQuiz()
     {
-        int correctCore = 0;
-        int missScore = 0;
+
 
         if (currentIndex < quizs.Count - 1)
         {
@@ -105,13 +107,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 2)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("1 + 1", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("1 + 1", playerAnswerInput, currentIndex + 1, "red");
                 }
 
@@ -120,13 +122,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 5)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("2 + 3", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("2 + 3", playerAnswerInput, currentIndex + 1, "red");
                 }
 
@@ -135,13 +137,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 3)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("5 - 2", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("5 - 2", playerAnswerInput, currentIndex + 1, "red");
                 }
 
@@ -151,13 +153,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 9)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("3 + 6", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("3 + 6", playerAnswerInput, currentIndex + 1, "red");
                 }
 
@@ -166,13 +168,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 3)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("7 - 4", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("7 - 4", playerAnswerInput, currentIndex + 1, "red");
                 }
 
@@ -181,13 +183,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 9)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("10 - 1", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("10 - 1", playerAnswerInput, currentIndex + 1, "red");
                 }
 
@@ -196,13 +198,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 6)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("2 * 3", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("2 * 3", playerAnswerInput, currentIndex + 1, "red");
                 }
             }
@@ -210,13 +212,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 3)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("6 / 2", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("6 / 2", playerAnswerInput, currentIndex + 1, "red");
                 }
 
@@ -225,13 +227,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 10)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("8 + 2", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("8 + 2", playerAnswerInput, currentIndex + 1, "red");
                 }
 
@@ -240,13 +242,13 @@ public class QuizManager : MonoBehaviour
             {
                 if (playerAnswerInput == 7)
                 {
-                    playerScore = playerScore + 1;
-                    correctCore = correctCore + 1;
+                    playerScore += 1;
+                    correctScore += 1;
                     createPrefabList("9 - 3", playerAnswerInput, currentIndex + 1, "green");
                 }
                 else
                 {
-                    missScore = missScore + 1;
+                    missScore += 1;
                     createPrefabList("9 - 3", playerAnswerInput, currentIndex + 1, "red");
                 }
             }
@@ -256,16 +258,17 @@ public class QuizManager : MonoBehaviour
             showQuiz();
             textQuizCounter.text = quizCounter.ToString();
             textplayerScore.text = playerScore.ToString();
-            resultCorrect.text   = correctCore.ToString();
-            resultMiss.text      = missScore.ToString();
+
+            resultCorrect.text = correctScore.ToString();
+            resultMiss.text = missScore.ToString();
         }
         else
         {
-            StartCoroutine(showAlertMessage());
+            // StartCoroutine(showAlertMessage());
+            StartCoroutine(showResullt());
             textAlert.text = "Game Over";
             textQuizs.text = "Game Over";
             playerAnswer.text = "";
-            canvasResult.alpha = 1;
             nextButton.interactable = false;
         }
     }
@@ -284,7 +287,7 @@ public class QuizManager : MonoBehaviour
         _alertAnswer.text = answer.ToString();
         _alertIndex.text = index.ToString();
 
-        Color color = Color.green;  
+        Color color = Color.green;
         if (ColorUtility.TryParseHtmlString(colors, out color))
         {
             _background.color = color;
@@ -296,4 +299,48 @@ public class QuizManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         canvasAlert.alpha = 0;
     }
+
+    IEnumerator showResullt()
+    {
+        canvasLoadResult.alpha = 1;
+        yield return new WaitForSeconds(2);
+        canvasLoadResult.alpha = 0;
+        canvasResult.alpha = 1;
+    }
+    public void ResetGame()
+    {
+        playerScore = 0;
+        correctScore = 0;
+        missScore = 0;
+        currentIndex = 0;
+        quizCounter = 1;
+
+        textQuizCounter.text = quizCounter.ToString();
+        textplayerScore.text = playerScore.ToString();
+        resultCorrect.text = correctScore.ToString();
+        resultMiss.text = missScore.ToString();
+
+        playerAnswer.text = "";
+        textQuizs.text = "";
+
+        onFocuse();
+        showQuiz();
+
+        nextButton.interactable = true;
+
+        canvasResult.alpha = 0;
+
+         // Reset Prefab 
+        foreach (Transform child in _itemContent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (countDownCoroutine != null)
+        {
+            StopCoroutine(countDownCoroutine);
+        }
+        countDownCoroutine = StartCoroutine(StartCountDown());
+    }
+
 }
