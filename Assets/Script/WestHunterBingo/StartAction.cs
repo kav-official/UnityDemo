@@ -81,13 +81,11 @@ public class StartAction : MonoBehaviour
 
     void DestroyPrefab()
     {
-    //      if (!isStartGame)
-    //    {
-            foreach (GameObject ball in _spawnBalls)
-            {
-                Destroy(ball);
-            }
-            _spawnBalls.Clear();
-        // }
+        foreach (GameObject ball in _spawnBalls)
+        {
+            Destroy(ball);
+        }
+        _spawnBalls.Clear();
+        buttonStartGame.interactable = true;
     }
 }
